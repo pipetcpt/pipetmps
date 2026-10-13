@@ -20,10 +20,12 @@ git remote remove origin 2>/dev/null || true
 git remote add origin "https://github.com/pipetcpt/pipetmps.git"
 git push -u origin main --force
 
-# 3) Pages 소스를 GitHub Actions로 설정 (워크플로가 배포)
-gh api -X POST "repos/pipetcpt/pipetmps/pages" -f build_type=workflow >/dev/null 2>&1 \
-  || gh api -X PUT "repos/pipetcpt/pipetmps/pages" -f build_type=workflow >/dev/null
+# 3) Pages 소스를 main 브랜치의 /docs 폴더로 설정
+gh api -X POST "repos/pipetcpt/pipetmps/pages" \
+  -f build_type=legacy -f "source[branch]=main" -f "source[path]=/docs" >/dev/null 2>&1 \
+  || gh api -X PUT "repos/pipetcpt/pipetmps/pages" \
+       -f build_type=legacy -f "source[branch]=main" -f "source[path]=/docs" >/dev/null
 
 # 4) 배포 완료 대기 후 주소 출력
-gh run watch --repo pipetcpt/pipetmps --exit-status >/dev/null 2>&1 || true
+until [ "$(gh api repos/pipetcpt/pipetmps/pages --jq .status)" != "building" ]; do sleep 5; done
 echo "https://pipetcpt.github.io/pipetmps/"
