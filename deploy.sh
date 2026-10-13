@@ -9,7 +9,7 @@ cd "$(dirname "$0")"
 if ! gh repo view pipetcpt/pipetmps >/dev/null 2>&1; then
   gh repo create pipetcpt/pipetmps --public \
     --description "PIPET MPS — 3D-생체조직칩 QSP 규제과학 연구단 (식약처 RS-2024-00396711)" \
-    --homepage "https://pipetcpt.github.io/pipetmps/"
+    --homepage "https://pipetmps.com/"
 fi
 
 # 2) 커밋·푸시
@@ -28,4 +28,4 @@ gh api -X POST "repos/pipetcpt/pipetmps/pages" \
 
 # 4) 배포 완료 대기 후 주소 출력
 until [ "$(gh api repos/pipetcpt/pipetmps/pages --jq .status)" != "building" ]; do sleep 5; done
-echo "https://pipetcpt.github.io/pipetmps/"
+echo "https://pipetmps.com/"

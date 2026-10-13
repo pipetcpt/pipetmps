@@ -4,16 +4,18 @@
 식품의약품안전처 출연연구개발사업 **RS-2024-00396711**
 「3D-생체조직칩의 QSP 모델링을 활용한 임상시험 설계 방법 개발과 규제과학 인력 양성」(2024.4–2028.12)의 과제 관리와 성과를 다룬다.
 
-사이트: https://pipetcpt.github.io/pipetmps/
+사이트: https://pipetmps.com/
 
 ## 구조
 
 GitHub Pages는 `main` 브랜치의 `docs/` 폴더를 사이트 루트로 서비스한다.
+사용자 지정 도메인은 `pipetmps.com`.
 
 - `docs/index.html` — 단일 페이지. 그림·로고 전부 data URI로 내장. 외부 의존은 Google Fonts(IBM Plex Sans KR) 뿐.
 - `docs/og.png` — 링크 공유용 미리보기 이미지 (1200×630).
 - `docs/favicon.svg` — 브라우저 탭 아이콘.
 - `docs/.nojekyll` — GitHub Pages의 Jekyll 처리 비활성화.
+- `docs/CNAME` — 사용자 지정 도메인(`pipetmps.com`). 배포 소스 폴더 안에 있어야 적용된다.
 - `deploy.sh` — 저장소 생성·푸시·Pages 소스 설정을 한 번에 처리.
 
 ## 갱신 방법
